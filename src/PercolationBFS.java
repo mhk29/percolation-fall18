@@ -23,13 +23,13 @@ public class PercolationBFS extends PercolationDFSFast {
 			if (inBounds(row - 1, col) && isOpen(row - 1, col) && ! isFull(row - 1, col)) {
 				que.add((row - 1) * myGrid.length + col);
 			}
-			if (inBounds(row - 1, col) && isOpen(row + 1, col) && ! isFull(row + 1, col)) {
+			if (inBounds(row + 1, col) && isOpen(row + 1, col) && ! isFull(row + 1, col)) {
 				que.add(((row + 1) * myGrid.length) + col);
 			}
-			if (inBounds(row - 1, col) && isOpen(row, col - 1) && ! isFull(row, col - 1)) {
+			if (inBounds(row, col - 1) && isOpen(row, col - 1) && ! isFull(row, col - 1)) {
 				que.add(row*myGrid.length + col - 1);
 			}
-			if (inBounds(row - 1, col) && isOpen(row, col + 1) && ! isFull(row, col + 1)) {
+			if (inBounds(row, col + 1) && isOpen(row, col + 1) && ! isFull(row, col + 1)) {
 				que.add(row*myGrid.length + col + 1);	
 			}
 		}
