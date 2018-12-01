@@ -13,7 +13,6 @@ public class PercolationDFSFast extends PercolationDFS {
 			(inBounds(row, col - 1) && isFull(row, col - 1)) ||
 			(inBounds(row, col + 1) && isFull(row, col + 1))) {
 			
-			myGrid[row][col] = FULL;
 			dfs(row, col);
 		}
 		
