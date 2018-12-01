@@ -1,13 +1,15 @@
 
 public class PercolationUF implements IPercolate {
 	
-	boolean myGrid[][];
-	int myOpenCount;
-	IUnionFind myFinder;
+	protected boolean myGrid[][];
+	protected int myOpenCount;
+	IUnionFind myFinder = new QuickUWPC();
 	private final int VTOP;
 	private final int VBOTTOM;
 	
-	public PercolationUF(int size, IUnionFind finder) {
+	public PercolationUF(IUnionFind finder, int size) {
+		myGrid = new boolean[size][size];
+		myOpenCount = 0;
 		VTOP = size * size;
 		VBOTTOM = size * size + 1;
 		finder.initialize(size*size + 2);
@@ -25,20 +27,24 @@ public class PercolationUF implements IPercolate {
 		if (! isOpen(row, col)) {
 			myGrid[row][col] = true;
 			
-			if (isOpen(row - 1, col)) {
+			if (inBounds(row - 1, col) && 
+					isOpen(row - 1, col)) {
 				myFinder.union(convertTo(row, col), convertTo(row - 1, col));
 			}
-			if (isOpen(row + 1, col)) {
+			if (inBounds(row + 1, col) && 
+					isOpen(row + 1, col)) {
 				myFinder.union(convertTo(row, col), convertTo(row + 1, col));
 			}
-			if (isOpen(row, col - 1)) {
+			if (inBounds(row, col - 1) && 
+					isOpen(row, col - 1)) {
 				myFinder.union(convertTo(row, col), convertTo(row, col - 1));
 			}
-			if (isOpen(row, col + 1)) {
+			if (inBounds(row, col + 1) && 
+					isOpen(row, col + 1)) {
 				myFinder.union(convertTo(row, col), convertTo(row, col + 1));
 			}
 			if (row == 0) {
-				myFinder.union(convertTo(row, col), VTOP);
+				myFinder.union(VTOP, convertTo(row, col));
 			}
 			if (row == myGrid.length) {
 				myFinder.union(convertTo(row, col), VBOTTOM);
