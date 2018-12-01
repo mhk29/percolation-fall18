@@ -22,8 +22,7 @@ public class PercolationUF implements IPercolate {
 			throw new IndexOutOfBoundsException(
 					String.format("(%d,%d) not in bounds", row,col));
 		}
-		
-		myOpenCount += 1;
+		if (myGrid[row][col] == false) myOpenCount += 1;
 		if (! isOpen(row, col)) {
 			myGrid[row][col] = true;
 			
