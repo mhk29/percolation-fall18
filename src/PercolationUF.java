@@ -7,7 +7,7 @@ public class PercolationUF implements IPercolate {
 	private final int VTOP;
 	private final int VBOTTOM;
 	
-	public PercolationUF(IUnionFind finder, int size) {
+	public PercolationUF(int size, IUnionFind finder) {
 		myGrid = new boolean[size][size];
 		myOpenCount = 0;
 		VTOP = size * size;
