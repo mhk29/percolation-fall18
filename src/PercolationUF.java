@@ -46,7 +46,7 @@ public class PercolationUF implements IPercolate {
 			if (row == 0) {
 				myFinder.union(VTOP, convertTo(row, col));
 			}
-			if (row == myGrid.length) {
+			if (row == myGrid.length - 1) {
 				myFinder.union(convertTo(row, col), VBOTTOM);
 			}	
 		}
