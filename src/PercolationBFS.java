@@ -21,10 +21,8 @@ public class PercolationBFS extends PercolationDFSFast {
 			int helper = que.remove();
 			int row1 = recover(helper, myGrid.length)[0];
 			int col1 = recover(helper, myGrid.length)[1];
-			if (inBounds(row1, col1)) {
 				
-				
-			if (inBounds(row1 - 1, col1) && isOpen(row1 - 1, col1) && ! isFull(row - 1, col)) {
+			if (inBounds(row1 - 1, col1) && isOpen(row1 - 1, col1) && ! isFull(row1 - 1, col1)) {
 				myGrid[row1 - 1][col1] = FULL;
 				que.add((row1 - 1) * myGrid.length + col1);
 			}
@@ -34,15 +32,13 @@ public class PercolationBFS extends PercolationDFSFast {
 			}
 			if (inBounds(row1, col1 - 1) && isOpen(row1, col1 - 1) && ! isFull(row1, col1 - 1)) {
 				myGrid[row1][col1 - 1] = FULL;
-				que.add(row*myGrid.length + col - 1);
+				que.add(row1*myGrid.length + col1 - 1);
 			}
 			if (inBounds(row1, col1 + 1) && isOpen(row1, col1 + 1) && ! isFull(row1, col1 + 1)) {
 				myGrid[row1][col1 + 1] = FULL;
 				que.add(row1*myGrid.length + col1 + 1);	
 			}
 			
-			
-			}
 		}
 	}
 	
