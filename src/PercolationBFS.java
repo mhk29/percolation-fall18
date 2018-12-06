@@ -3,9 +3,17 @@ import java.util.Queue;
 
 public class PercolationBFS extends PercolationDFSFast {
 	
+	// Constructor
+	// makes super(n) call to initialize same as PercolationDFSFast does 
+	
 	public PercolationBFS(int n) {
 		super(n);
 	}
+	
+	// dfs(row, col)
+	// using BFS model this method sets appropriate cells int the grid to 
+	// be full if a cell has been opened and has not been filled
+	// and likewise fills other cells in the grid that have not been filled
 	
 	@Override 
 	public void dfs(int row, int col) {
@@ -41,6 +49,10 @@ public class PercolationBFS extends PercolationDFSFast {
 			
 		}
 	}
+	
+	// recover(a, b)
+	// recovers ints col and row based on myGrid.length and the 
+	// number that has just been removed from the queue
 	
 	public int[] recover (int n, int m) {
 		int row = n / m;
