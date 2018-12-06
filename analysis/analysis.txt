@@ -1,22 +1,66 @@
-Your name
-Your netid
+Matt Kleiser
+mhk29
 
 Copy/Paste results from PercolationStats using PercolationDFS
-
+simulation data for 20 trials
+grid	mean	stddev	time
+100	0.593	0.014	1.510
+200	0.591	0.010	17.574
+400	0.590	0.006	236.648
+<Stack Overflow Error>
 
 Copy/Paste results from PercolationStats using PercolationDFSFast
-
+simulation data for 20 trials
+grid	mean	stddev	time
+100	0.593	0.014	0.174
+200	0.591	0.010	0.276
+400	0.590	0.006	1.344
+800	0.594	0.004	9.744
+<Stack Overflow Error>
 
 Copy/Paste results from PercolationStats using PercolationBFS
-
+simulation data for 20 trials
+grid	mean	stddev	time
+100	0.593	0.014	0.138
+200	0.591	0.010	0.198
+400	0.590	0.006	1.084
+800	0.594	0.004	8.350
+1600	0.592	0.002	52.529
+3200	0.593	0.001	344.572
 
 Copy/Paste results from PercolationStats using PercolationUF 
 with the QuickUWPC UnionFind implementation.
+simulation data for 20 trials
+grid	mean	stddev	time
+100	0.593	0.014	0.228
+200	0.591	0.010	0.220
+400	0.590	0.006	0.973
+800	0.594	0.004	5.140
+1600	0.592	0.002	26.581
+3200	0.593	0.001	160.497
 
 1. How does doubling the grid size affect running time (keeping # trials fixed)
-
+Doubling the grid size causes the amount of time to calculate to multiply by a relatively
+set number based on the type of Percolation used PercolationUF, or PercolationBFS, etc.
+(I.E. 160.497/26.581 = 6.1; 26.581/5.140 = 5.17; 5.140/0.973 = 5.3)
+This appears to follow O(n^2) timing. Each time the grid doubles, a relatively 
+similar amount of time multiplication increase occurs. This can be seen throghout each
+trial above and is similar for every case, although the exact number used to 
+double changes each time. 
 
 2. How does doubling the number of trials affect running time.
-
+Doubling the number of trials causes the running time to directly double. 
+(I.E. for 1600: 53.218 (40) vs 26.581 (20) or for 800: 9.866 (40) vs. 5.140 (20))
+This was performed using the PercolationUF method and is seen to be the case for
+all methods developed for this project. This makes sense since it should take about
+the same amount of time to run each trial; doubling the number of trials should
+double the time it takes for PercolationStats to reach the end. 
 
 3. Estimate the largest grid size you can run in 24 hours with 20 trials. Explain your reasoning.
+Each time the grid doubles, the amount of time increased is generally a multiplication 
+by approximately 5 when the PercolationUF method is used, the fastest approach for this project.
+Since it takes about 5 seconds to generate 800, we can multiply by 5.2 by the runtime
+each time to determine the size of the grid when the time reaches the closest number
+less than 86400. 160*(5.2^3)=117349, while 160*(5.2^2)=22567. The largest grid size that we can
+run in under 24 hours with 20 trials is about 12800. Using basic multiplication, approxiately
+a grid size of 12800 can be properly generated. 
